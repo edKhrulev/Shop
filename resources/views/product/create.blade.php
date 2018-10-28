@@ -4,7 +4,7 @@
 
     <h1>Product page</h1>
 
-    <form action="{{ route('postProduct') }}" method="post">
+    <form action="{{ route('postProduct') }}" method="post" enctype="multipart/form-data">
         @csrf
     <div class="form-group">
         <input type="text" name="title" value="" class="form-control" id="exampleInputText" placeholder="Enter name product" required/>

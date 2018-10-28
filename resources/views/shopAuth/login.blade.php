@@ -15,10 +15,10 @@
                 <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                 <small id="emailHelp" class="form-text text-muted">Must be at least 6 characters long.</small>
             </div>
-            <div class="form-group form-check">
-                <input type="checkbox" name="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-            </div>
+            {{--<div class="form-group form-check">--}}
+                {{--<input type="checkbox" name="checkbox" class="form-check-input" id="exampleCheck1">--}}
+                {{--<label class="form-check-label" for="exampleCheck1">Check me out</label>--}}
+            {{--</div>--}}
             <button type="submit" class="btn btn-success">Submit</button>
         </form>
 @endsection

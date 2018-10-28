@@ -23,15 +23,16 @@ class ProductController extends Controller
 
     public function postProduct(Request $request)
     {
+
         $product =  new Product();
         $product->title = $request->title;
         $product->description = $request->description;
         $product->price = $request->price;
         $product->category = $request->category;
-//        Storage::put('images', $fileContents);
+//        Storage::disk('local')->put('file.txt', 'Contents');
         $product->image = $request->image;
         $product->save();
 
-        return redirect('/product/create')->with('status', 'Product published ');
+        return redirect('/')->with('status', 'Product published ');
     }
 }

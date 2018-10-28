@@ -15,10 +15,16 @@ Route::namespace('ShopAuth')->group(function () {
     Route::post('/registration', 'UserController@postRegistration')->name('postRegistration');
     Route::get('/login', 'UserController@getLogin')->name('getLogin');
     Route::post('/login', 'UserController@postLogin')->name('postLogin');
-    Route::get('/', 'HomeController@getHome')->name('getHome');
-    Route::get('/logout', 'UserController@getLogout')->name('getLogout');
-    Route::get('/products/create', 'ProductController@getProduct')->name('getProduct');
-    Route::post('/products/create', 'ProductController@postProduct')->name('postProduct');
+
+
+    Route::group(['middleware' => ['checkAuth']], function () {
+        Route::get('/', 'HomeController@getHome')->name('getHome');
+        Route::get('/cart/{productId}', 'CartController@getCart')->name('getCart');
+        Route::get('/logout', 'UserController@getLogout')->name('getLogout');
+
+        Route::get('/products/create', 'ProductController@getProduct')->name('getProduct');
+        Route::post('/products/create', 'ProductController@postProduct')->name('postProduct');
+    });
 });
 
 
