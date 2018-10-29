@@ -14,8 +14,10 @@
         <p>This is title: {{ $product->title }}</p>
         <p>This is description: {{ $product->description }}</p>
         <p>This is price: {{ $product->price }}</p>
-        <p>This is category: {{ $product->category }}</p>
+        <p>This is category: {{ $product->category }}</p><br>
+           <img class="img-fluid" src="{{asset('/storage/' . $product->image)}}">
         <a href="/cart/{{$product->id}}" class="btn btn-success">Buy</a>
+
     @endforeach
 
 

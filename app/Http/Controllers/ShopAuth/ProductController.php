@@ -29,8 +29,7 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->price = $request->price;
         $product->category = $request->category;
-//        Storage::disk('local')->put('file.txt', 'Contents');
-        $product->image = $request->image;
+        $product->image = $request->image->store('uploads', 'public');
         $product->save();
 
         return redirect('/')->with('status', 'Product published ');

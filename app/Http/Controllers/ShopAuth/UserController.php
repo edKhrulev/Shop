@@ -72,6 +72,7 @@ class UserController extends Controller
         // 4. Create response
         return redirect('/')->with('status', 'You are authorised');
     }
+
     public function getLogout(Request $request)
     {
         $request->session()->flush();
