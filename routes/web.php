@@ -18,8 +18,10 @@ Route::namespace('ShopAuth')->group(function () {
 
 
     Route::group(['middleware' => ['checkAuth']], function () {
+
         Route::get('/', 'HomeController@getHome')->name('getHome');
         Route::get('/cart/{productId}', 'CartController@getCart')->name('getCart');
+        Route::get('/order', 'CartController@getOrder')->name('getOrder');
         Route::get('/logout', 'UserController@getLogout')->name('getLogout');
 
         Route::get('/products/create', 'ProductController@getProduct')->name('getProduct');

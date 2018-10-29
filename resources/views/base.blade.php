@@ -7,7 +7,6 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Welcome</title>
 
-        <!-- Styles -->
         <link href="/css/libs/bootstrap.min.css" rel="stylesheet"/>
     </head>
     <body>

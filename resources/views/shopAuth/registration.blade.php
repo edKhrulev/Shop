@@ -32,12 +32,8 @@
             </div>
             <div class="form-group">
                 {{--<label for="exampleInputPassword2">Confirm password</label>--}}
-                <input type="password" name="rePassword" value="" class="form-control" id="exampleInputPassword2" placeholder="Confirm password" required/>
+                <input type="password" name="password_confirmation" value="" class="form-control" id="exampleInputPassword2" placeholder="Confirm password" required/>
             </div>
-        {{--<div class="form-group form-check">--}}
-            {{--<input type="checkbox" name="checkbox" class="form-check-input" id="exampleCheck1">--}}
-            {{--<label class="form-check-label" for="exampleCheck1">Check me out</label>--}}
-        {{--</div>--}}
             <button type="submit" class="btn btn-success">Submit</button>
     </form>
 @endsection

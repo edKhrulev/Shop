@@ -17,34 +17,36 @@ class UserController extends Controller
 
     public function postRegistration(Request $request)
     {
-    // 1. Validate data
+        // 1. Validate data
 
         $validator = Validator::make($request->all(), [
             'username' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
-            'password' => 'required|string|min:6',
+            'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
+            'password_confirmation' => 'min:6'
         ]);
 
         if ($validator->fails()) {
             return back()->withInput()->withErrors($validator);
         }
-    // 2. Check rePassword
-    // 3. Check existed user
-    // TODO add message
-        $userExisted = User::where(['email' => $request->email])->limit(1)->get();
+        // 2. Check rePassword
+        // 3. Check existed user
+        // TODO add message
+        $userExisted = User::where(['email' => $request->email])->first();
 
-//        if ($userExisted) {
-//            return back()->withInput()->with('info', 'User Exist!');
-//        }
-    // 4. Create new User
+        $messages = ['message' => 'User with that email already exists!!!'];
 
-        $user = new User();
-        $user->username = $request->username;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->save();
-    // 5. Redirect to login page
-        return redirect('/login')->with('status', 'Profile updated!');
+        if ($userExisted) {
+            return back()->withInput()->withErrors($messages);
+        }
+            // 4. Create new User
+            $user = new User();
+            $user->username = $request->username;
+            $user->email = $request->email;
+            $user->password = Hash::make($request->password);
+            $user->save();
+            // 5. Redirect to login page
+            return redirect('/login')->with('status', 'Profile updated!');
     }
 
     public function getLogin()
