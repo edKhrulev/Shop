@@ -13,7 +13,7 @@
 
     <nav class="navbar navbar-dark bg-dark navbar-expand">
         <ul class="float-md-left navbar-nav">
-        <li class="nav-item"><a class="nav-link position-left" href="/products/create">Product</a></li>
+        <li class="nav-item"><a class="nav-link position-left" href="/products/access">Product</a></li>
         </ul>
 
         <ul class="ml-md-left navbar-nav">

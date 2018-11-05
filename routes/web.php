@@ -23,9 +23,9 @@ Route::namespace('ShopAuth')->group(function () {
         Route::get('/cart/{productId}', 'CartController@getCart')->name('getCart');
         Route::get('/order', 'CartController@getOrder')->name('getOrder');
         Route::get('/logout', 'UserController@getLogout')->name('getLogout');
-
-        Route::get('/products/create', 'ProductController@getProduct')->name('getProduct');
-        Route::post('/products/create', 'ProductController@postProduct')->name('postProduct');
+        Route::get('/products/access', 'ProductController@getProduct')->name('getProduct');
+//        Route::get('/products/create', 'ProductController@getProduct')->name('getProduct');
+//        Route::post('/products/create', 'ProductController@postProduct')->name('postProduct');
     });
 });
 

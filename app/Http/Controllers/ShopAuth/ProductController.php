@@ -18,7 +18,7 @@ class ProductController extends Controller
 {
     public function getProduct()
     {
-        return view('product.create');
+        return view('product.access');
     }
 
     public function postProduct(Request $request)
