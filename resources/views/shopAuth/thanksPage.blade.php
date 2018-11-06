@@ -6,5 +6,6 @@
 
     <h5>Your number order: №{{$orderId}}</h5>
 
+    <h4><a href="/" class="badge badge-primary">>Back to products</a></h4>
 
 @endsection
