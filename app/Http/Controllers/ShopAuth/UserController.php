@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
-//    use \Illuminate\Foundation\Auth\AuthenticatesUsers;
 
     public function getRegistration()
     {
@@ -59,63 +58,37 @@ class UserController extends Controller
     public function postLogin(Request $request)
     {
         // 1. Check existing email and password
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required|min:6',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withInput()->withErrors($validator);
+        }
+
         if (!$request->email || !$request->password)
         {
-            return back()->withInput()->with('info', 'not enough information!');
+            $info = ['info' => 'Not enough information!'];
+            return back()->withInput()->withErrors($info);
         }
         // 2. Find user
         $user = User::where('email', '=', $request->email)->first();
 
         if (empty($user)) {
-            return back()->withInput()->with('info', 'user is not found');
+            $info = ['info' => 'User is not found'];
+            return back()->withInput()->withErrors($info);
         }
         //3. check password
         if(Hash::check( $request->password, $user->password) === false) {
-            return back()->withInput()->with('info', 'user is not found');
+            $info = ['info' => 'Password incorrect!'];
+            return back()->withInput()->withErrors($info);
         }
         // 4. Add session
         session(['userId' => $user->id]);
         // 5. Create response
         return redirect('/')->with('status', 'You are authorised');
     }
-
-//    public function postLogin(Request $request)
-//    {
-//        // 1. Check existing email and password
-//        $validator = Validator::make($request->all(), [
-//            'email' => 'required|email',
-//            'password' => 'required|min:6',
-//        ]);
-//
-//        if ($validator->fails()) {
-//            return back()->withInput()->withErrors($validator);
-//        }
-//
-//        $user = $request->input('email');
-//
-//        if (filter_var($user, FILTER_VALIDATE_EMAIL)) {
-//            // check if user email exists in database
-//            $user = User::where('email', '=', $request->email)->first();
-//            session(['userId' => $user->id]);
-//
-//
-//            if (is_numeric($request->get('email'))) {
-//                return ['email' => $request->get('email'), 'password' => $request->get('password')];
-//            }
-//
-//            $info = ['info' => 'User is not found'];
-//            if (empty($user)) {
-//                // TODO check password
-//                return back()->withInput()->withErrors($info);
-//            }
-
-//
-//        // 3. Add session
-//
-//
-//        // 4. Create response
-//        return redirect('/')->with('status', 'You are authorised');
-//    }
 
     public function getLogout(Request $request)
     {
